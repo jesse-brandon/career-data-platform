@@ -1,7 +1,9 @@
+from datetime import datetime
 from pathlib import Path
 
 import typer
 import yaml
+from dateutil.relativedelta import relativedelta
 from jinja2 import Environment, FileSystemLoader
 
 app = typer.Typer()
@@ -11,6 +13,32 @@ TEMPLATE_DIR = Path("templates")
 OUTPUT_DIR = Path("outputs")
 PROFILE_PATH = Path("data/profile.yaml")
 SKILLS_PATH = Path("data/skills.yaml")
+CERT_PATH = Path("data/certifications.yaml")
+
+
+def load_certifications():
+    with open(CERT_PATH, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def ym_to_key(ym: str | None, ongoing: bool = False) -> int:
+    if not ym:
+        return 999912 if ongoing else 0
+    y, m = ym.split("-")
+    return int(y) * 100 + int(m)
+
+
+def key_to_ym(key: int) -> str:
+    y = key // 100
+    m = key % 100
+    return f"{y:04d}-{m:02d}"
+
+
+def format_ym(ym: str | None) -> str:
+    if not ym or ym == "Present":
+        return "Present"
+    dt = datetime.strptime(ym, "%Y-%m")
+    return dt.strftime("%b %Y")
 
 
 def load_skills():
@@ -18,17 +46,102 @@ def load_skills():
         return yaml.safe_load(f)
 
 
-def aggregate_skills(roles, skills_map):
-    used_tech = set()
+def group_roles_for_display(roles: list[dict]) -> list[dict]:
+    """
+    Returns a list of 'display roles'. Each display role contains:
+      - display_company
+      - overall date window (min start, max end)
+      - entries: list of underlying role records in the group
+      - achievements: flattened achievements across entries (already filtered if present)
+    """
+
+    groups: dict[str, dict] = {}
+    singles: list[dict] = []
 
     for role in roles:
-        achievements = role.get("filtered_achievements") or role.get("achievements", [])
-        for ach in achievements:
+        group_id = role.get("display_group")
+        if not group_id:
+            singles.append(role)
+            continue
+
+        if group_id not in groups:
+            groups[group_id] = {
+                "display_group": group_id,
+                "display_company": role.get("display_company") or role["company"],
+                "entries": [],
+            }
+
+        groups[group_id]["entries"].append(role)
+
+    display_roles: list[dict] = []
+
+    # Build grouped display roles
+    for g in groups.values():
+        entries = g["entries"]
+
+        # Sort entries within the group:
+        # 1) explicit display_order
+        # 2) most recent end_date
+        entries_sorted = sorted(
+            entries,
+            key=lambda r: (
+                r.get("display_order", 9999),
+                -ym_to_key(r.get("end_date"), ongoing=False),
+                -ym_to_key(r.get("start_date"), ongoing=False),
+            ),
+        )
+
+        # Determine overall date range
+        start_keys = [ym_to_key(r.get("start_date")) for r in entries_sorted]
+        end_keys = [ym_to_key(r.get("end_date"), ongoing=True) for r in entries_sorted]
+
+        start_min = min(start_keys)
+        end_max = max(end_keys)
+
+        start_str = key_to_ym(start_min)
+        end_str = "Present" if end_max == 999912 else key_to_ym(end_max)
+
+        display_roles.append(
+            {
+                "company": g["display_company"],
+                "start_key": start_min,
+                "end_key": end_max,
+                "start_date": format_ym(start_str),
+                "end_date": format_ym(end_str),
+                "entries": entries_sorted,
+            }
+        )
+
+    # Convert singles into display roles too (same shape)
+    for r in singles:
+        end_key = ym_to_key(r.get("end_date"), ongoing=True)
+
+        display_roles.append(
+            {
+                "company": r.get("display_company") or r["company"],
+                "start_key": ym_to_key(r.get("start_date")),
+                "end_key": end_key,
+                "start_date": format_ym(r.get("start_date")),
+                "end_date": format_ym(r.get("end_date") or "Present"),
+                "entries": [r],
+            }
+        )
+
+    # Sort display roles: most recent end_key first, then start_key
+    display_roles.sort(key=lambda d: (-d["end_key"], -d["start_key"], d["company"]))
+
+    return display_roles
+
+
+def aggregate_skills_from_display_roles(display_roles, skills_map):
+    used_tech = set()
+
+    for dr in display_roles:
+        for ach in dr.get("achievements", []):
             for tech in ach.get("technologies", []):
                 used_tech.add(tech)
 
     categorized = {}
-
     for category, skills in skills_map.items():
         matched = [skill for skill in skills if skill in used_tech]
         if matched:
@@ -82,6 +195,7 @@ def build(
     output: str = typer.Option(
         "resume.md", "--output", "-o", help="Output markdown file"
     ),
+    max_bullets: int = typer.Option(None, "--max-bullets", "-m"),
 ):
     """
     Generate resume markdown from structured role data.
@@ -90,17 +204,38 @@ def build(
     profile = load_profile()
     roles = load_roles()
     roles = filter_roles(roles, include)
+    certifications = load_certifications()
 
     if not roles:
         typer.echo("No matching roles found.")
         raise typer.Exit()
 
-    skills = aggregate_skills(roles, skills_map)
+    display_roles = group_roles_for_display(roles)
+
+    skills = aggregate_skills_from_display_roles(display_roles, skills_map)
 
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     template = env.get_template("base.md.j2")
 
-    rendered = template.render(roles=roles, profile=profile, skills=skills)
+    for dr in display_roles:
+        for entry in dr["entries"]:
+            entry["start_date"] = format_ym(entry.get("start_date"))
+            entry["end_date"] = format_ym(entry.get("end_date"))
+
+    if max_bullets:
+        for dr in display_roles:
+            for entry in dr["entries"]:
+                achievements = entry.get("filtered_achievements") or entry.get(
+                    "achievements", []
+                )
+                entry["filtered_achievements"] = achievements[:max_bullets]
+
+    rendered = template.render(
+        display_roles=display_roles,
+        profile=profile,
+        skills=skills,
+        certifications=certifications,
+    )
 
     OUTPUT_DIR.mkdir(exist_ok=True)
     output_path = OUTPUT_DIR / output

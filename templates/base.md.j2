@@ -20,14 +20,32 @@
 
 ## Professional Experience
 
-{% for role in roles %}
-### {{ role.title }} — {{ role.company }}
-{{ role.start_date }} – {{ role.end_date }}
+{% for dr in display_roles %}
+### {{ dr.company }}
+{{ dr.start_date }} – {{ dr.end_date }}
 
-{{ role.summary }}
+{% for entry in dr.entries %}
+#### {{ entry.title }}{% if entry.location %} — {{ entry.location }}{% endif %}
+{% if dr.entries|length > 1 %}
+{{ entry.start_date }} – {{ entry.end_date }}
+{% endif %}
 
-{% for achievement in role.filtered_achievements or role.achievements %}
+{{ entry.summary }}
+
+{% for achievement in entry.filtered_achievements or entry.achievements %}
 - {{ achievement.description }}
+{% endfor %}
+
+{% endfor %}
+
+{% endfor %}
+
+## Certifications
+
+{% for category, certs in certifications.items() %}
+**{{ category }}**
+{% for cert in certs %}
+- {{ cert.name }} ({{ cert.year }})
 {% endfor %}
 
 {% endfor %}

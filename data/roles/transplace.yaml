@@ -1,9 +1,12 @@
 company: Transplace
 location: Greenville, SC
-title: Senior SQL Developer / SQL Database Administrator
+title: Senior Oracle SQL Developer
 start_date: 2015-02
 end_date: 2018-11
 employment_type: full-time
+display_group: transplace
+display_company: "Transplace (formerly M33 Integrated)"
+display_order: 1
 
 summary: >
   Hybrid Data Warehouse / Database Engineer supporting Oracle DW ETL/Extracts and

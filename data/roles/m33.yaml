@@ -1,10 +1,13 @@
 company: M33 Integrated
 location: Greenville, SC
-title: Senior SQL Developer / Database Administrator
+title: Senior Database Administrator and Developer
 start_date: 2013-01
 end_date: 2018-11
 employment_type: full-time
 acquired_by: Transplace
+display_group: transplace
+display_company: "Transplace (formerly M33 Integrated)"
+display_order: 2
 
 summary: >
   Database Administrator and SQL Developer responsible for PostgreSQL and SQL Server
