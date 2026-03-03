@@ -1,9 +1,15 @@
-{% include "sections/header.md.j2" %}
+# Resume
 
-{% include "sections/summary.md.j2" %}
+## Professional Experience
 
-{% include "sections/experience.md.j2" %}
+{% for role in roles %}
+### {{ role.title }} — {{ role.company }}
+{{ role.start_date }} – {{ role.end_date }}
 
-{% include "sections/skills.md.j2" %}
+{{ role.summary }}
 
-{% include "sections/certifications.md.j2" %}
+{% for achievement in role.filtered_achievements or role.achievements %}
+- {{ achievement.description }}
+{% endfor %}
+
+{% endfor %}
