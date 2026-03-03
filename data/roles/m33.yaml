@@ -1,0 +1,187 @@
+company: M33 Integrated
+location: Greenville, SC
+title: Senior SQL Developer / Database Administrator
+start_date: 2013-01
+end_date: 2018-11
+employment_type: full-time
+acquired_by: Transplace
+
+summary: >
+  Database Administrator and SQL Developer responsible for PostgreSQL and SQL Server
+  production systems supporting a logistics SaaS platform. Following acquisition by
+  Transplace, continued ownership of legacy Postgres stack while rapidly upskilling
+  into Oracle/PLSQL to support new data warehouse development initiatives.
+
+themes:
+  - postgresql performance optimization
+  - legacy platform ownership
+  - oracle transition & rapid skill acquisition
+  - data warehouse design
+  - cross-platform database administration
+
+achievements:
+  - id: m33_001
+    description: >
+      Managed PostgreSQL 9.5 cluster (primary, hot standbys, data warehouse) and
+      multiple SQL Server / SSRS instances across production, QA, and development.
+    impact: >
+      Improved platform stability and reduced operational risk by standardizing
+      database administration practices across environments.
+    technologies:
+      - PostgreSQL
+      - SQL Server
+      - SSRS
+      - Linux
+      - Windows Server
+    tags:
+      - postgres
+      - sql_server
+      - administration
+      - reliability
+      - enterprise
+
+  - id: m33_002
+    description: >
+      Reduced average application response time from ~500ms to ~100ms by tuning
+      Postgres queries, optimizing indexes, and eliminating database bloat.
+    impact: >
+      Decreased database wait time from ~60% to ~25%, significantly improving
+      end-user experience and application throughput.
+    technologies:
+      - PostgreSQL
+      - SQL
+      - Index Optimization
+    tags:
+      - performance
+      - tuning
+      - postgres
+      - optimization
+
+  - id: m33_003
+    description: >
+      Reduced database size by ~50% by identifying and eliminating index/table bloat,
+      removing deprecated objects, and implementing archival strategies.
+    impact: >
+      Improved backup times, storage utilization, and overall system efficiency.
+    technologies:
+      - PostgreSQL
+      - SQL
+      - Python
+    tags:
+      - performance
+      - data_lifecycle
+      - postgres
+      - automation
+
+  - id: m33_004
+    description: >
+      Designed recursive archival process that analyzed schema relationships to
+      safely migrate historical data to warehouse within transactional boundaries.
+    impact: >
+      Enabled controlled archival without violating referential integrity, reducing
+      production dataset size while preserving analytical history.
+    technologies:
+      - PostgreSQL
+      - Python
+      - SQL
+    tags:
+      - data_architecture
+      - automation
+      - postgres
+      - data_warehouse
+
+  - id: m33_005
+    description: >
+      Diagnosed and resolved high-contention issues caused by open transactions
+      from pooled Java connections by analyzing transaction history and session state.
+    impact: >
+      Eliminated blocking events and improved concurrency stability across the application stack.
+    technologies:
+      - PostgreSQL
+      - Java
+      - SQL
+    tags:
+      - troubleshooting
+      - performance
+      - concurrency
+      - postgres
+
+  - id: m33_006
+    description: >
+      Migrated primary SSRS instance from SQL Server 2008R2 to 2012, consolidating
+      subscriptions and implementing role-based security and delegated administration.
+    impact: >
+      Improved reporting security posture and reduced administrative overhead.
+    technologies:
+      - SSRS
+      - SQL Server
+    tags:
+      - reporting
+      - sql_server
+      - security
+      - modernization
+
+  - id: m33_007
+    description: >
+      Designed and implemented nightly ETL processes in SSIS to consolidate data
+      from multiple platforms into a centralized SQL Server data warehouse.
+    impact: >
+      Provided consistent analytical datasets for BI reporting and reduced manual data preparation.
+    technologies:
+      - SSIS
+      - SQL Server
+      - Data Warehouse
+    tags:
+      - etl
+      - data_warehouse
+      - ssis
+      - sql_server
+
+  - id: m33_008
+    description: >
+      Rapidly upskilled in Oracle PL/SQL following acquisition by Transplace to support
+      new Oracle-based development initiatives while maintaining legacy Postgres systems.
+    impact: >
+      Accelerated transition to Oracle-centric architecture without disruption to legacy systems.
+    technologies:
+      - Oracle
+      - PL/SQL
+      - PostgreSQL
+    tags:
+      - oracle
+      - plsql
+      - cross_platform
+      - adaptability
+
+  - id: m33_009
+    description: >
+      Created Oracle packages containing procedures, functions, and types supporting
+      application calls and ETL/extract workloads triggered by cron and shell scripts.
+    impact: >
+      Improved modularity and maintainability of Oracle-based processing logic.
+    technologies:
+      - Oracle
+      - PL/SQL
+      - Shell Scripts
+    tags:
+      - oracle
+      - etl
+      - plsql
+      - architecture
+
+  - id: m33_010
+    description: >
+      Successfully executed scripted migration from on-prem infrastructure to hosted
+      environment, including OS upgrades and Postgres major version upgrade with
+      streaming replication.
+    impact: >
+      Reduced infrastructure risk and improved scalability of production systems.
+    technologies:
+      - PostgreSQL
+      - Streaming Replication
+      - Linux
+    tags:
+      - migration
+      - postgres
+      - infrastructure
+      - high_availability
