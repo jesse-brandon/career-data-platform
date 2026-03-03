@@ -11,6 +11,13 @@
 
 ---
 
+## Technical Skills
+
+{% for category, items in skills.items() %}
+**{{ category }}:** {{ items | join(", ") }}
+
+{% endfor %}
+
 ## Professional Experience
 
 {% for role in roles %}

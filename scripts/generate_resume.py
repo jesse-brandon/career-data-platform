@@ -10,6 +10,31 @@ DATA_DIR = Path("data/roles")
 TEMPLATE_DIR = Path("templates")
 OUTPUT_DIR = Path("outputs")
 PROFILE_PATH = Path("data/profile.yaml")
+SKILLS_PATH = Path("data/skills.yaml")
+
+
+def load_skills():
+    with open(SKILLS_PATH, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def aggregate_skills(roles, skills_map):
+    used_tech = set()
+
+    for role in roles:
+        achievements = role.get("filtered_achievements") or role.get("achievements", [])
+        for ach in achievements:
+            for tech in ach.get("technologies", []):
+                used_tech.add(tech)
+
+    categorized = {}
+
+    for category, skills in skills_map.items():
+        matched = [skill for skill in skills if skill in used_tech]
+        if matched:
+            categorized[category] = sorted(matched)
+
+    return categorized
 
 
 def load_profile():
@@ -61,6 +86,7 @@ def build(
     """
     Generate resume markdown from structured role data.
     """
+    skills_map = load_skills()
     profile = load_profile()
     roles = load_roles()
     roles = filter_roles(roles, include)
@@ -69,10 +95,12 @@ def build(
         typer.echo("No matching roles found.")
         raise typer.Exit()
 
+    skills = aggregate_skills(roles, skills_map)
+
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     template = env.get_template("base.md.j2")
 
-    rendered = template.render(roles=roles, profile=profile)
+    rendered = template.render(roles=roles, profile=profile, skills=skills)
 
     OUTPUT_DIR.mkdir(exist_ok=True)
     output_path = OUTPUT_DIR / output

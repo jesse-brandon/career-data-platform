@@ -1,0 +1,36 @@
+Cloud:
+  - AWS
+  - GCP
+  - Heroku
+
+Databases:
+  - PostgreSQL
+  - SQL Server
+  - Oracle
+
+Languages:
+  - Python
+  - SQL
+  - Bash
+  - PowerShell
+
+Orchestration & DevOps:
+  - Docker
+  - Kubernetes
+  - Liquibase
+  - GitHub Actions
+  - Azure DevOps
+
+Data Engineering:
+  - ETL
+  - Data Pipelines
+  - Data Quality
+  - Change Data Capture
+
+Architecture:
+  - Microservices
+  - Distributed Systems
+  - Database Modernization
+  - CI/CD
+  - Performance Tuning
+  - Security
