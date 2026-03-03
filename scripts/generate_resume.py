@@ -3,7 +3,6 @@ from pathlib import Path
 
 import typer
 import yaml
-from dateutil.relativedelta import relativedelta
 from jinja2 import Environment, FileSystemLoader
 
 app = typer.Typer()
@@ -48,11 +47,10 @@ def load_skills():
 
 def group_roles_for_display(roles: list[dict]) -> list[dict]:
     """
-    Returns a list of 'display roles'. Each display role contains:
-      - display_company
-      - overall date window (min start, max end)
-      - entries: list of underlying role records in the group
-      - achievements: flattened achievements across entries (already filtered if present)
+    Returns a list of display roles:
+    - company
+    - overall date window
+    - entries (grouped roles)
     """
 
     groups: dict[str, dict] = {}
@@ -86,7 +84,7 @@ def group_roles_for_display(roles: list[dict]) -> list[dict]:
             entries,
             key=lambda r: (
                 r.get("display_order", 9999),
-                -ym_to_key(r.get("end_date"), ongoing=False),
+                -ym_to_key(r.get("end_date"), ongoing=True),
                 -ym_to_key(r.get("start_date"), ongoing=False),
             ),
         )
@@ -137,9 +135,13 @@ def aggregate_skills_from_display_roles(display_roles, skills_map):
     used_tech = set()
 
     for dr in display_roles:
-        for ach in dr.get("achievements", []):
-            for tech in ach.get("technologies", []):
-                used_tech.add(tech)
+        for entry in dr["entries"]:
+            achievements = entry.get("filtered_achievements") or entry.get(
+                "achievements", []
+            )
+            for ach in achievements:
+                for tech in ach.get("technologies", []):
+                    used_tech.add(tech)
 
     categorized = {}
     for category, skills in skills_map.items():
