@@ -1,0 +1,13 @@
+## Professional Experience
+
+{% for role in roles %}
+### {{ role.title }} — {{ role.company }}
+{{ role.start_date }} – {{ role.end_date }}
+
+{{ role.summary }}
+
+{% for achievement in role.filtered_achievements %}
+- {{ achievement.description }}
+{% endfor %}
+
+{% endfor %}
