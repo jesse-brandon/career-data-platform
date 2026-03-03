@@ -1,0 +1,157 @@
+company: Transplace
+location: Greenville, SC
+title: Senior SQL Developer / SQL Database Administrator
+start_date: 2015-02
+end_date: 2018-11
+employment_type: full-time
+
+summary: >
+  Hybrid Data Warehouse / Database Engineer supporting Oracle DW ETL/Extracts and
+  SQL Server development across logistics systems. Implemented database DevOps
+  practices, designed replication architectures, and modernized ETL pipelines.
+
+themes:
+  - data warehouse etl/extract development
+  - database devops & change management
+  - replication & near-real-time ingestion
+  - cross-platform integration (sql server, oracle, mysql)
+  - performance & reliability
+
+achievements:
+  - id: transplace_001
+    description: >
+      Introduced Liquibase-driven database change management executed from Bamboo to
+      promote database code alongside application releases; documented process in Confluence
+      and mentored developers on the workflow.
+    impact: >
+      Reduced deployment risk and improved release consistency by aligning database changes
+      with CI/CD practices and source control.
+    technologies:
+      - Liquibase
+      - Bamboo
+      - Jira
+      - Confluence
+      - Bitbucket
+    tags:
+      - devops
+      - ci_cd
+      - change_management
+      - liquibase
+
+  - id: transplace_002
+    description: >
+      Designed and operated Oracle GoldenGate replication to provide near real-time data
+      into the Oracle Data Warehouse from multiple sources.
+    impact: >
+      Enabled timely analytics and reporting by reducing ingestion latency for operational data.
+    technologies:
+      - Oracle GoldenGate
+      - Oracle
+      - Oracle Data Warehouse
+    tags:
+      - replication
+      - near_real_time
+      - data_warehouse
+      - oracle
+
+  - id: transplace_003
+    description: >
+      Implemented SQL Server Change Data Capture (CDC) to support GoldenGate replication
+      from SQL Server high availability environments (FCI / Always On AG) into Oracle DW.
+    impact: >
+      Improved reliability of replicated feeds and supported near real-time operational analytics.
+    technologies:
+      - SQL Server
+      - Change Data Capture (CDC)
+      - Always On Availability Groups
+      - Oracle GoldenGate
+    tags:
+      - cdc
+      - replication
+      - sql_server
+      - oracle
+
+  - id: transplace_004
+    description: >
+      Built replication architecture to consolidate a large multi-tenant MySQL source (~2000 tables)
+      into a simplified Oracle DW model (~100 destination tables).
+    impact: >
+      Reduced downstream complexity and improved usability of warehouse data models for analytics consumers.
+    technologies:
+      - MySQL
+      - Oracle
+      - Oracle Data Warehouse
+      - Oracle GoldenGate
+    tags:
+      - data_modeling
+      - replication
+      - mysql
+      - oracle
+      - data_warehouse
+
+  - id: transplace_005
+    description: >
+      Developed SSIS-based integrations to extract and transform financial and operational data
+      from McLeod Software on SQL Server Always On into Oracle Financials, including robust
+      entity matching using multiple fuzzy dimensions.
+    impact: >
+      Improved financial integration accuracy and reduced manual reconciliation by enhancing matching logic.
+    technologies:
+      - SSIS
+      - SQL Server
+      - Always On Availability Groups
+      - Oracle Financials
+    tags:
+      - etl
+      - ssis
+      - integration
+      - sql_server
+      - oracle
+
+  - id: transplace_006
+    description: >
+      Converted a complex SSIS/T-SQL integration workflow to Oracle PL/SQL to standardize
+      processing in the Oracle ecosystem.
+    impact: >
+      Reduced platform fragmentation and improved maintainability by consolidating business logic in Oracle.
+    technologies:
+      - Oracle PL/SQL
+      - Oracle
+      - SSIS
+      - T-SQL
+    tags:
+      - modernization
+      - etl
+      - oracle
+      - plsql
+
+  - id: transplace_007
+    description: >
+      Supported resolution of major incidents on SQL Server Always On clusters, providing DBA-level
+      troubleshooting and operational remediation.
+    impact: >
+      Reduced time-to-recovery during production events by accelerating root cause analysis and remediation.
+    technologies:
+      - SQL Server
+      - Always On Availability Groups
+    tags:
+      - operations
+      - troubleshooting
+      - reliability
+      - sql_server
+
+  - id: transplace_008
+    description: >
+      Participated in on-call rotation supporting data warehouse ETL, extract workloads, and
+      SQL Server development needs across multiple application teams.
+    impact: >
+      Improved operational continuity through responsive support and sustained platform reliability.
+    technologies:
+      - Oracle
+      - SQL Server
+      - PL/SQL
+      - T-SQL
+    tags:
+      - on_call
+      - operations
+      - data_warehouse
