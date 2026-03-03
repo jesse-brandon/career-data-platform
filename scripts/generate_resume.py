@@ -9,6 +9,12 @@ app = typer.Typer()
 DATA_DIR = Path("data/roles")
 TEMPLATE_DIR = Path("templates")
 OUTPUT_DIR = Path("outputs")
+PROFILE_PATH = Path("data/profile.yaml")
+
+
+def load_profile():
+    with open(PROFILE_PATH, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
 
 
 def load_roles():
@@ -55,7 +61,7 @@ def build(
     """
     Generate resume markdown from structured role data.
     """
-
+    profile = load_profile()
     roles = load_roles()
     roles = filter_roles(roles, include)
 
@@ -66,7 +72,7 @@ def build(
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
     template = env.get_template("base.md.j2")
 
-    rendered = template.render(roles=roles)
+    rendered = template.render(roles=roles, profile=profile)
 
     OUTPUT_DIR.mkdir(exist_ok=True)
     output_path = OUTPUT_DIR / output
