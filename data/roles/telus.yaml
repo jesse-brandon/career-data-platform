@@ -1,0 +1,117 @@
+company: Telus Agriculture & Consumer Goods
+location: Charlotte, NC
+title: Data Engineer IV
+start_date: 2020-09
+end_date: 2026-01
+employment_type: full-time
+
+summary: >
+  Data and Database SME responsible for architecting and modernizing
+  cloud-native data pipelines, microservices, and database change management
+  across multi-client fulfillment platforms.
+
+themes:
+  - cloud data pipelines
+  - microservices architecture
+  - database modernization
+  - ci/cd enablement
+  - cross-functional leadership
+
+achievements:
+  - id: telus_001
+    description: >
+      Designed and deployed cloud-native data pipelines utilizing PostgreSQL,
+      Docker, RabbitMQ, AWS S3, AWS SQS, AWS SES, GCP Workflows, and GCP Cloud SQL.
+    impact: >
+      Standardized cross-client data ingestion and fulfillment processing,
+      improving scalability and onboarding efficiency.
+    technologies:
+      - PostgreSQL
+      - Docker
+      - RabbitMQ
+      - AWS S3
+      - AWS SQS
+      - AWS SES
+      - GCP Workflows
+      - GCP Cloud SQL
+    tags:
+      - cloud
+      - aws
+      - gcp
+      - pipelines
+      - microservices
+      - etl
+      - architecture
+
+  - id: telus_002
+    description: >
+      Implemented Liquibase-based database change management integrated
+      with Azure DevOps and GitHub Actions CI/CD pipelines.
+    impact: >
+      Established consistent, version-controlled database deployments
+      across environments and teams.
+    technologies:
+      - Liquibase
+      - Azure DevOps
+      - GitHub Actions
+    tags:
+      - devops
+      - ci_cd
+      - database_modernization
+      - automation
+
+  - id: telus_003
+    description: >
+      Built and deployed containerized microservices on Heroku, AWS, and GCP
+      to process REST-based data integrations for client fulfillment systems.
+    impact: >
+      Enabled modular, client-specific customization while converging
+      toward a unified multi-tenant solution.
+    technologies:
+      - Docker
+      - Heroku
+      - AWS
+      - GCP
+      - REST APIs
+    tags:
+      - cloud
+      - microservices
+      - api
+      - distributed_systems
+
+  - id: telus_004
+    description: >
+      Developed Python scripts, shell automation, SQL functions, and ETL processes
+      for data validation, transformation, and reporting in cloud-hosted infrastructure.
+    impact: >
+      Improved data quality controls and reduced manual intervention in
+      cross-client processing workflows.
+    technologies:
+      - Python
+      - Bash
+      - PostgreSQL
+      - SQL
+    tags:
+      - etl
+      - automation
+      - data_quality
+      - python
+      - postgres
+
+  - id: telus_005
+    description: >
+      Served as Data SME on Architecture and Deployment Strategy committees,
+      reviewing database performance, security, and access control strategies.
+    impact: >
+      Improved cross-team technical alignment and reduced production risk
+      through design review and standardization.
+    technologies:
+      - PostgreSQL
+      - AWS S3
+      - DrawIO
+      - Lucidchart
+    tags:
+      - architecture
+      - leadership
+      - security
+      - performance
