@@ -1,0 +1,221 @@
+company: AFS Logistics
+location: Greenville, SC
+title: Senior SQL Database Administrator
+start_date: 2019-03
+end_date: 2020-04
+employment_type: full-time
+
+summary: >
+  Lead DBA for a large SQL Server estate (production + dev/qa) supporting multiple
+  application stacks, SSIS/SSRS/SSAS, and multi-terabyte databases. Owned platform
+  reliability, performance tuning, security, release processes, and ETL modernization.
+
+themes:
+  - sql server administration
+  - high availability & disaster recovery
+  - performance tuning & troubleshooting
+  - security & identity (ad/kerberos/spn)
+  - etl modernization (ssis)
+  - change management & release engineering
+
+achievements:
+  - id: afs_001
+    description: >
+      Led database administration for ~40 production SQL Server instances and ~60
+      lower-environment counterparts; supported systems ranging from 100MB to multi-terabyte.
+    impact: >
+      Improved operational reliability and reduced response time for production support by
+      standardizing administration and troubleshooting practices across the estate.
+    technologies:
+      - SQL Server
+      - Windows Server
+      - SSIS
+      - SSRS
+      - SSAS
+    tags:
+      - sql_server
+      - operations
+      - enterprise
+      - reliability
+
+  - id: afs_002
+    description: >
+      Built and deployed SQL Server 2016/2017 instances including standalone SSDE, SSIS,
+      SSAS, and SSRS components; planned capacity, forecasted growth, and validated hardware needs.
+    impact: >
+      Reduced platform risk and improved scaling readiness through proactive capacity planning
+      and standardized deployments.
+    technologies:
+      - SQL Server 2016
+      - SQL Server 2017
+      - SSIS
+      - SSRS
+      - SSAS
+    tags:
+      - sql_server
+      - capacity_planning
+      - administration
+      - architecture
+
+  - id: afs_003
+    description: >
+      Administered Always On Availability Groups with local HA nodes and an offsite DR node,
+      configuring quorum, witnesses, listeners, and read-only routing; supported cluster expansion.
+    impact: >
+      Strengthened availability posture and reduced downtime risk by hardening failover and routing
+      configuration for production workloads.
+    technologies:
+      - SQL Server Always On AG
+      - Windows Failover Cluster
+    tags:
+      - high_availability
+      - disaster_recovery
+      - sql_server
+      - reliability
+
+  - id: afs_004
+    description: >
+      Implemented and maintained automated backups (full/log/diff), index/statistics maintenance,
+      and integrity checks; deployed and upgraded Ola Hallengren’s maintenance solution across instances.
+    impact: >
+      Increased recoverability and reduced operational toil with consistent maintenance standards and
+      tested restore procedures.
+    technologies:
+      - SQL Server
+      - Ola Hallengren Maintenance Solution
+      - SQL Agent
+    tags:
+      - operations
+      - backup_restore
+      - maintenance
+      - sql_server
+
+  - id: afs_005
+    description: >
+      Designed SQL Agent monitoring and alerting (growth projections, disk space, tempdb utilization,
+      SSIS execution/failures, script automation) including failover-aware job behavior.
+    impact: >
+      Improved detection and response for production incidents and reduced unplanned outages through
+      proactive alerting and automation.
+    technologies:
+      - SQL Agent
+      - Database Mail
+      - Operators/Alerts
+      - SSIS
+    tags:
+      - monitoring
+      - automation
+      - reliability
+      - sql_server
+
+  - id: afs_006
+    description: >
+      Hardened database security by designing AD group strategies (resource/user groups) across a
+      multi-forest domain; reduced overprivileged/shared accounts and resolved authentication issues.
+    impact: >
+      Reduced access inconsistencies and lowered audit/security risk by standardizing identity and permission models.
+    technologies:
+      - Active Directory
+      - SQL Server Security
+      - Kerberos
+      - SPN
+    tags:
+      - security
+      - identity
+      - kerberos
+      - sql_server
+
+  - id: afs_007
+    description: >
+      Diagnosed and resolved performance bottlenecks using DMVs, SolarWinds DPA, SQL Profiler/Traces,
+      and execution plan analysis; adjusted indexing and refactored high-impact T-SQL.
+    impact: >
+      Reduced peak CPU utilization from ~80% to ~20% during high-traffic periods by optimizing queries and indexing.
+    technologies:
+      - SQL Server
+      - DMVs
+      - SolarWinds DPA
+      - SQL Profiler
+    tags:
+      - performance
+      - tuning
+      - sql_server
+      - troubleshooting
+
+  - id: afs_008
+    description: >
+      Reduced contention and eliminated ~90% of deadlocks by tuning transaction scope and isolation levels
+      in stored procedures and application access patterns.
+    impact: >
+      Improved application stability and throughput by significantly reducing blocking and deadlock frequency.
+    technologies:
+      - SQL Server
+      - T-SQL
+    tags:
+      - performance
+      - concurrency
+      - tuning
+      - sql_server
+
+  - id: afs_009
+    description: >
+      Refactored and redesigned a critical SSIS ETL workflow (including multiple ~5,000-line stored procedures),
+      removing redundant logic, reducing tempdb pressure, and adding error handling/logging.
+    impact: >
+      Reduced runtime from several hours to under one hour and enabled reliable reprocessing of two years of history.
+    technologies:
+      - SSIS
+      - T-SQL
+      - SQL Server
+    tags:
+      - etl
+      - ssis
+      - modernization
+      - performance
+
+  - id: afs_010
+    description: >
+      Implemented repeatable production-to-lower environment refresh automation, preserving environment-specific
+      settings and obfuscating sensitive data.
+    impact: >
+      Improved developer productivity and reduced environment drift by standardizing refresh and masking workflows.
+    technologies:
+      - SQL Server
+      - SQL Agent
+      - T-SQL
+    tags:
+      - automation
+      - data_privacy
+      - operations
+      - reliability
+
+  - id: afs_011
+    description: >
+      Enabled and tuned SQL Change Tracking for multiple tables in multi-terabyte databases participating
+      in an Availability Group, validating overhead and production impact prior to rollout.
+    impact: >
+      Supported downstream data capture needs without introducing noticeable performance regression.
+    technologies:
+      - SQL Server Change Tracking
+      - SQL Server Always On AG
+    tags:
+      - cdc
+      - sql_server
+      - architecture
+      - reliability
+
+  - id: afs_012
+    description: >
+      Established Visual Studio SQL Database Projects for versioned development and promotion of database objects;
+      trained team members on check-in/release workflows and multi-database project structure.
+    impact: >
+      Improved release quality and reduced production deployment risk with repeatable, source-controlled database changes.
+    technologies:
+      - Visual Studio Database Projects
+      - SQL Server Data Tools (SSDT)
+      - T-SQL
+    tags:
+      - devops
+      - change_management
+      - version_control
+      - sql_server
