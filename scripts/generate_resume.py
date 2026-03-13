@@ -190,6 +190,34 @@ def filter_roles(roles, include_tags=None):
     return filtered_roles
 
 
+def extract_keywords(text: str) -> set[str]:
+    keywords = {
+        "dagster",
+        "kubernetes",
+        "spark",
+        "trino",
+        "postgres",
+        "aws",
+        "gcp",
+        "etl",
+        "pipeline",
+        "python",
+        "docker",
+        "kafka",
+        "airflow",
+    }
+
+    text_lower = text.lower()
+
+    found = set()
+
+    for k in keywords:
+        if k in text_lower:
+            found.add(k)
+
+    return found
+
+
 @app.command()
 def build(
     include: list[str] = typer.Option(
@@ -208,6 +236,9 @@ def build(
     roles = load_roles()
     roles = filter_roles(roles, include)
     certifications = load_certifications()
+
+    if not isinstance(max_bullets, int):
+        max_bullets = None
 
     if not roles:
         typer.echo("No matching roles found.")
@@ -270,6 +301,26 @@ def build(
 @app.command()
 def version():
     typer.echo("Career Data Platform v1")
+
+
+@app.command()
+def target(
+    job_file: str,
+    output: str = typer.Option("target_resume.md", "--output", "-o"),
+):
+    """
+    Generate resume tailored to a job description.
+    """
+
+    text = Path(job_file).read_text(encoding="utf-8")
+
+    keywords = extract_keywords(text)
+
+    typer.echo(f"Detected keywords: {', '.join(sorted(keywords))}")
+
+    include_tags = list(keywords)
+
+    build(include=include_tags, output=output)
 
 
 if __name__ == "__main__":

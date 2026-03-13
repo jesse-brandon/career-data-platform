@@ -1,33 +1,39 @@
 body {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 10.5pt;
-    line-height: 1.4;
-    margin: 40px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.35;
+    max-width: 900px;
+    margin: auto;
 }
 
 h1 {
-    font-size: 24pt;
-    margin-bottom: 5px;
+    font-size: 26px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
 }
 
 h2 {
-    font-size: 14pt;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #888;
     margin-top: 18px;
-    border-bottom: 1px solid #ccc;
+    margin-bottom: 6px;
 }
 
 h3 {
-    font-size: 12pt;
-    margin-top: 12px;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 h4 {
-    font-size: 11pt;
-    margin-bottom: 2px;
+    font-size: 12px;
+    margin: 2px 0;
 }
 
 ul {
     margin-top: 4px;
+    margin-bottom: 10px;
 }
 
 li {
