@@ -1,3 +1,4 @@
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -245,6 +246,25 @@ def build(
     output_path.write_text(rendered, encoding="utf-8")
 
     typer.echo(f"Resume generated: {output_path}")
+
+    pdf_path = output_path.with_suffix(".pdf")
+
+    try:
+        subprocess.run(
+            [
+                "pandoc",
+                str(output_path),
+                "-o",
+                str(pdf_path),
+                "--pdf-engine=wkhtmltopdf",
+                "-c",
+                "templates/resume.css",
+            ],
+            check=True,
+        )
+        typer.echo(f"PDF generated: {pdf_path}")
+    except Exception:
+        typer.echo("Pandoc not available, skipping PDF generation.")
 
 
 @app.command()

@@ -33,7 +33,7 @@
 {{ entry.summary }}
 
 {% for achievement in entry.filtered_achievements or entry.achievements %}
-- {{ achievement.description }}
+- {{ achievement.description }}{% if achievement.impact %} {{ achievement.impact }}{% endif %}
 {% endfor %}
 
 {% endfor %}

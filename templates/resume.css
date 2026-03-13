@@ -1,0 +1,39 @@
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    margin: 40px;
+}
+
+h1 {
+    font-size: 24pt;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 14pt;
+    margin-top: 18px;
+    border-bottom: 1px solid #ccc;
+}
+
+h3 {
+    font-size: 12pt;
+    margin-top: 12px;
+}
+
+h4 {
+    font-size: 11pt;
+    margin-bottom: 2px;
+}
+
+ul {
+    margin-top: 4px;
+}
+
+li {
+    margin-bottom: 3px;
+}
+
+p {
+    margin: 4px 0;
+}
